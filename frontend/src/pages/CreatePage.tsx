@@ -92,7 +92,6 @@ function CreatePage() {
                   maxH="200px"
                   mx="auto"
                   rounded="md"
-                  fallbackSrc="https://via.placeholder.com/200"
                 /> 
               </Box>
             )}
