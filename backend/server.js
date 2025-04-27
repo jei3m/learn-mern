@@ -1,7 +1,5 @@
 import express from 'express';
 import dotenv from 'dotenv';
-import path from 'path';
-import { fileURLToPath } from 'url';
 import { connectDB } from './config/db.js';
 import productRoutes from  './routes/product.route.js';
 import cors from 'cors';
@@ -17,6 +15,10 @@ const PORT = process.env.PORT || 5000;
 app.use(cors({ origin: process.env.ORIGIN_URL })); // Allow requests from this origin
 
 app.use(express.json()); // To allow accept json data in the req.body
+
+app.get("/", (req, res) => {
+	res.send("API is running");
+});
 
 app.use("/api/products", productRoutes)
 
