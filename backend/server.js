@@ -15,17 +15,13 @@ const PORT = process.env.PORT || 5000;
 
 app.use(express.json()); // To allow accept json data in the req.body
 
-app.get("/", (req,res) => {
-    res.send("Hello World!");
-});
-
 app.use("/api/products", productRoutes)
 
 if (process.env.NODE_ENV === 'production') {
-    app.use(express.static(path.join(__dirname, '/frontend/dist')));
+    app.use(express.static(path.join(__dirname, '../frontend/dist')));
 
     app.get("*", (req, res) => {
-        res.sendFile(path.resolve(__dirname,'frontend', 'dist', 'index.html'));
+        res.sendFile(path.resolve(__dirname, '../frontend', 'dist', 'index.html'));
     });
 }
 
