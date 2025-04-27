@@ -6,9 +6,6 @@ import cors from 'cors';
 
 dotenv.config();
 
-// const __filename = fileURLToPath(import.meta.url);
-// const __dirname = path.dirname(__filename);
-
 const app = express();
 const PORT = process.env.PORT || 5000;
 
@@ -21,14 +18,6 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/products", productRoutes)
-
-// if (process.env.NODE_ENV === 'production') {
-//     app.use(express.static(path.join(__dirname, '../frontend/dist')));
-
-//     app.get("*", (req, res) => {
-//         res.sendFile(path.resolve(__dirname, '../frontend', 'dist', 'index.html'));
-//     });
-// }
 
 app.listen(PORT, () => {
     connectDB();
