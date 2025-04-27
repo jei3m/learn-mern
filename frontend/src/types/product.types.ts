@@ -4,16 +4,18 @@ export interface Product {
     image: string;
     price: string;
     description: string;
+    createdAt: string;
+    updatedAt?: string;
 }
 
-export interface CreateProduct {
+export interface NoIDProduct {
     name: string;
     image: string;
     price: string;
     description: string;
 }
   
-interface CreateProductResponse {
+interface ProductResponse {
     success: boolean;
     message: string;
 }
@@ -21,7 +23,8 @@ interface CreateProductResponse {
 export interface ProductStore {
     products: Product[];
     setProducts: (products: any[]) => void;
-    createProduct: (newProduct: CreateProduct) => Promise<CreateProductResponse>;
-    fetchProducts: () => Promise<CreateProductResponse>;
-    deleteProduct: (pid: string) => Promise<CreateProductResponse>;
+    createProduct: (newProduct: NoIDProduct) => Promise<ProductResponse>;
+    fetchProducts: () => Promise<ProductResponse>;
+    deleteProduct: (pid: string) => Promise<ProductResponse>;
+    updateProduct: (pid: string, updatedProduct: NoIDProduct) => Promise<ProductResponse>;
 }
