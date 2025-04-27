@@ -59,17 +59,12 @@ To set up the Product Management App locally, follow these steps:
     
     From the root directory:
     ```shell
-    npm run dev
-    ```
-
-    In a separate terminal, from the frontend directory:
-    ```shell
-    npm run dev
+    npm run start
     ```
 
 5. **Open Your Browser**
     
-    Navigate to `http://localhost:5173` to view the application.
+    Navigate to `http://localhost:5000` to view the application.
 
 ## Usage
 
