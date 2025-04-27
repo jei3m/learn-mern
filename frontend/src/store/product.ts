@@ -49,10 +49,36 @@ export const useProductStore = create<ProductStore>((set) => ({
                 return {success:false, message:"Failed to delete product"};
             }
 
+            // To filter recently deleted product
             set(state => ({products:state.products.filter(product => product._id !== pid)}));
             return {success:true, message:"Product deleted successfully!"};
         } catch (error) {
-            return {success:false, message:"Failed to fetch products"};
+            return {success:false, message:"Failed to delete product"};
+        }
+    },
+    updateProduct: async (pid: string, updatedProduct: { name: string; image: string; price: string; description: string }) => {
+        try {
+            const res = await fetch(`/api/products/${pid}`, {
+                method:"PUT",
+                headers:{
+                    "Content-Type":"application/json"
+                },
+                body:JSON.stringify(updatedProduct)
+            })
+            const data = await res.json();
+
+            if(!data.success) {
+                return {success:false, message:"Failed to update product"};
+            }
+
+            set((state) => ({
+                products: state.products.map((product) => product._id === pid ? data.data : product),
+            }));
+
+            return {success:true, message:"Product updated successfully!"};
+
+        } catch (error) {
+            return {success:false, message:"Failed to update product"};
         }
     }
 }))
