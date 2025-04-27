@@ -9,14 +9,10 @@ import {
   IconButton,
   Box,
   useColorModeValue,
-  Menu,
-  MenuButton,
-  MenuList,
-  MenuItem,
   Show,
   Hide
 } from "@chakra-ui/react"
-import { PlusSquareIcon, HamburgerIcon } from "@chakra-ui/icons";
+import { PlusSquareIcon } from "@chakra-ui/icons";
 import { IoMoon } from "react-icons/io5";
 import { LuSun } from "react-icons/lu";
 
@@ -37,7 +33,6 @@ function Navbar() {
       boxShadow="md"
       borderBottom="1px"
       borderColor={useColorModeValue("blue.700", "gray.700")}
-      marginBottom={"20px"}
     >
       <Container maxW="container.xl" px={{ base: 4, md: 6 }}>
         <Flex
@@ -100,27 +95,17 @@ function Navbar() {
                 _hover={{ bg: hoverBg }}
                 size="md"
               />
-              
-              <Menu>
-                <MenuButton
-                  as={IconButton}
-                  aria-label="Options"
-                  icon={<HamburgerIcon />}
-                  variant="ghost"
-                  color={textColor}
-                  _hover={{ bg: hoverBg }}
-                />
-                <MenuList bg={bgColor} borderColor={hoverBg}>
-                  <MenuItem 
-                    icon={colorMode === "light" ? <IoMoon /> : <LuSun />}
-                    onClick={toggleColorMode}
-                    bg={bgColor}
-                    _hover={{ bg: hoverBg }}
-                  >
-                    {colorMode === "light" ? "Dark Mode" : "Light Mode"}
-                  </MenuItem>
-                </MenuList>
-              </Menu>
+
+              <IconButton
+                aria-label="Toggle color mode"
+                icon={colorMode === "light" ? <IoMoon /> : <LuSun />}
+                onClick={toggleColorMode}
+                variant="ghost"
+                color={textColor}
+                _hover={{ bg: hoverBg }}
+                size="md"
+              />
+
             </HStack>
           </Hide>
         </Flex>
