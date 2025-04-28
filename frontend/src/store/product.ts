@@ -6,11 +6,11 @@ export const useProductStore = create<ProductStore>((set) => ({
     products: [],
     setProducts: (products) => set({products}),
     createProduct: async (newProduct: { name: string; image: string; price: string; description: string }) => {
-        
+    
         if(!newProduct.name || !newProduct.image || !newProduct.price || !newProduct.description) {
             return {success:false, message:"Please fill in all fields."}
         }
-
+    
         try {
             const res = await fetch('/api/products', {
                 method:"POST",
@@ -21,9 +21,15 @@ export const useProductStore = create<ProductStore>((set) => ({
             })
     
             const data = await res.json();
+            
+            // Check if the server response indicates success
+            if (!data.success) {
+                return {success: false, message: data.message};
+            }
+            
             set((state) => ({products:[...state.products, data.data]}));
             return {success:true, message:"Product created successfully!"};
-
+    
         } catch (error) {
             return {success:false, message:"Failed to create product"};
         }
@@ -32,6 +38,11 @@ export const useProductStore = create<ProductStore>((set) => ({
         try {
             const res = await fetch('/api/products');
             const data = await res.json();
+
+            if(!data.success) {
+                return {success:false, message: data.message};
+            }
+
             set({products:data.data});
             return {success:true, message:"Products fetched successfully!"};
         } catch (error) {
