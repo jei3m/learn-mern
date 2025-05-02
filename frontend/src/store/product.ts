@@ -5,9 +5,9 @@ import { ProductStore } from "../types/product.types";
 export const useProductStore = create<ProductStore>((set) => ({
     products: [],
     setProducts: (products) => set({products}),
-    createProduct: async (newProduct: { name: string; image: string; price: string; description: string }) => {
+    createProduct: async (newProduct: { name: string; image: string; count: string; description: string }) => {
     
-        if(!newProduct.name || !newProduct.image || !newProduct.price || !newProduct.description) {
+        if(!newProduct.name || !newProduct.image || !newProduct.count || !newProduct.description) {
             return {success:false, message:"Please fill in all fields."}
         }
     
@@ -67,7 +67,7 @@ export const useProductStore = create<ProductStore>((set) => ({
             return {success:false, message:"Failed to delete product"};
         }
     },
-    updateProduct: async (pid: string, updatedProduct: { name: string; image: string; price: string; description: string }) => {
+    updateProduct: async (pid: string, updatedProduct: { name: string; image: string; count: string; description: string }) => {
         try {
             const res = await fetch(`/api/products/${pid}`, {
                 method:"PUT",

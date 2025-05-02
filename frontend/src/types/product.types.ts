@@ -2,7 +2,7 @@ export interface Product {
     _id: string;
     name: string;
     image: string;
-    price: string;
+    count: string;
     description: string;
     createdAt: string;
     updatedAt?: string;
@@ -11,7 +11,7 @@ export interface Product {
 export interface NoIDProduct {
     name: string;
     image: string;
-    price: string;
+    count: string;
     description: string;
 }
   

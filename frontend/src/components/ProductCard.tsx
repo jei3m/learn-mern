@@ -38,7 +38,7 @@ const ProductCard: FC<ProductCardProps> = ({ product }) => {
     const toast = useToast();
     const bg = useColorModeValue('white', 'gray.800');
     const borderColor = useColorModeValue('gray.200', 'gray.700');
-    const priceColor = useColorModeValue('blue.600', 'blue.300');
+    const countColor = useColorModeValue('blue.600', 'blue.300');
     const descriptionColor = useColorModeValue('gray.600', 'gray.400');
 
     const {deleteProduct, updateProduct} = useProductStore();
@@ -77,6 +77,7 @@ const ProductCard: FC<ProductCardProps> = ({ product }) => {
 				status: "error",
 				duration: 3000,
 				isClosable: true,
+                position: "top"
 			});
 		} else {
 			toast({
@@ -85,6 +86,7 @@ const ProductCard: FC<ProductCardProps> = ({ product }) => {
 				status: "success",
 				duration: 3000,
 				isClosable: true,
+                position: "top"
 			});
 		}
     }
@@ -168,9 +170,9 @@ const ProductCard: FC<ProductCardProps> = ({ product }) => {
                     <Text
                         fontSize="2xl"
                         fontWeight="bold"
-                        color={priceColor}
+                        color={countColor}
                     >
-                        ${product.price}
+                        {product.count}pcs
                     </Text>
                 </VStack>
             </Box>
@@ -193,13 +195,13 @@ const ProductCard: FC<ProductCardProps> = ({ product }) => {
                                 />
                             </FormControl>
                             <FormControl>
-                                <FormLabel>Price</FormLabel>
+                                <FormLabel>Count</FormLabel>
                                 <Input
-                                    placeholder="Price"
-                                    name="price"
+                                    placeholder="Count"
+                                    name="count"
                                     type="number"
-                                    value={updatedProduct.price}
-                                    onChange={(e) => setUpdatedProduct({ ...updatedProduct, price: e.target.value })}
+                                    value={updatedProduct.count}
+                                    onChange={(e) => setUpdatedProduct({ ...updatedProduct, count: e.target.value })}
                                     size="lg"
                                 />
                             </FormControl>

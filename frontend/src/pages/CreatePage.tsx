@@ -23,7 +23,7 @@ function CreatePage() {
   const [newProduct, setNewProduct] = useState({
     name: "",
     description: "",
-    price: "",
+    count: "",
     image: ""
   });
 
@@ -56,7 +56,7 @@ function CreatePage() {
       setNewProduct({
         name: "",
         description: "",
-        price: "",
+        count: "",
         image: ""
       });
     }
@@ -124,15 +124,15 @@ function CreatePage() {
             </FormControl>
 
             <FormControl isRequired>
-              <FormLabel fontWeight="semibold">Price</FormLabel>
+              <FormLabel fontWeight="semibold">Count</FormLabel>
               <Input
                 type="number"
                 min={0}
                 step="0.01"
                 placeholder="0.00"
-                name="price"
-                value={newProduct.price}
-                onChange={(e) => setNewProduct({...newProduct, price: e.target.value})}
+                name="count"
+                value={newProduct.count}
+                onChange={(e) => setNewProduct({...newProduct, count: e.target.value})}
                 bg={inputBg}
                 size="lg"
                 focusBorderColor="blue.500"
